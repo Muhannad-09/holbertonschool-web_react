@@ -5,38 +5,51 @@ interface Student {
   location: string;
 }
 
-const student1: Student = {
+// Define both students
+const firstStudent: Student = {
   firstName: "Alice",
   lastName: "Johnson",
   age: 21,
   location: "New York",
 };
 
-const student2: Student = {
-  firstName: "Bob",
-  lastName: "Smith",
-  age: 23,
-  location: "Los Angeles",
+const secondStudent: Student = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 60,
+  location: "London",
 };
 
-const studentsList: Student[] = [student1, student2];
+// Store them in an array
+const studentsList: Array<Student> = [firstStudent, secondStudent];
 
-const table = document.createElement("table");
-const tbody = document.createElement("tbody");
+// Access the body
+const body: HTMLBodyElement = document.getElementsByTagName("body")[0];
 
+// Create table elements
+const table: HTMLTableElement = document.createElement("table");
+const thead: HTMLTableSectionElement = document.createElement("thead");
+const tbody: HTMLTableSectionElement = document.createElement("tbody");
+
+// Create table header
+const rowHead: HTMLTableRowElement = thead.insertRow(0);
+const cell1Head: HTMLTableCellElement = rowHead.insertCell(0);
+const cell2Head: HTMLTableCellElement = rowHead.insertCell(1);
+
+cell1Head.innerHTML = "First Name";
+cell2Head.innerHTML = "Location";
+
+table.append(thead);
+
+// Add student rows
 studentsList.forEach((student) => {
-  const row = document.createElement("tr");
+  const row: HTMLTableRowElement = tbody.insertRow();
+  const cell1: HTMLTableCellElement = row.insertCell(0);
+  const cell2: HTMLTableCellElement = row.insertCell(1);
 
-  const nameCell = document.createElement("td");
-  nameCell.textContent = student.firstName;
-
-  const locationCell = document.createElement("td");
-  locationCell.textContent = student.location;
-
-  row.appendChild(nameCell);
-  row.appendChild(locationCell);
-  tbody.appendChild(row);
+  cell1.innerHTML = student.firstName;
+  cell2.innerHTML = student.location;
 });
 
-table.appendChild(tbody);
-document.body.appendChild(table);
+table.append(tbody);
+body.append(table);
