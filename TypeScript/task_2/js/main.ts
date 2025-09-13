@@ -1,3 +1,5 @@
+// Task 5: Advanced Types Part 1
+
 // Interfaces
 interface DirectorInterface {
   workFromHome(): string;
@@ -49,6 +51,8 @@ function createEmployee(salary: number | string): Director | Teacher {
   }
 }
 
+// Task 6: Functions specific to employees
+
 // Type predicate
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
@@ -63,6 +67,22 @@ function executeWork(employee: Director | Teacher): void {
   }
 }
 
-// Tests
+// Tests for Task 5 & 6
 executeWork(createEmployee(200));    // Getting to work
 executeWork(createEmployee(1000));   // Getting to director tasks
+
+// Task 7: String literal types
+
+type Subjects = "Math" | "History";
+
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === "Math") {
+    return "Teaching Math";
+  } else {
+    return "Teaching History";
+  }
+}
+
+// Tests for Task 7
+console.log(teachClass("Math"));    // Teaching Math
+console.log(teachClass("History")); // Teaching History
