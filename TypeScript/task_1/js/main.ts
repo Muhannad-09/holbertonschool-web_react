@@ -1,3 +1,4 @@
+// Task 1 & 2: Teacher and Directors
 interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
@@ -27,7 +28,6 @@ const teacher2: Teacher = {
 console.log(teacher1);
 console.log(teacher2);
 
-// Task 2: Directors interface extending Teacher
 interface Directors extends Teacher {
   numberOfReports: number;
 }
@@ -41,3 +41,15 @@ const director1: Directors = {
 };
 
 console.log(director1);
+
+// Task 3: printTeacher
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
+  return `${firstName.charAt(0)}. ${lastName}`;
+};
+
+console.log(printTeacher("John", "Doe"));   // J. Doe
+console.log(printTeacher("Jane", "Smith")); // J. Smith
